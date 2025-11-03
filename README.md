@@ -74,10 +74,11 @@ nnUNetv2_evaluate_folder \
   2>&1 | tee "$MET_TXT"
 ```
 ### HD95
+
+```python
 import os
 import SimpleITK as sitk
 from medpy.metric.binary import hd95
-
 
 pred_dir = "/home/20203964/BEP_1/labelspost_predicted_2D"
 gt_dir = "/home/20203964/BEP_1/labelsTs_2D"
@@ -89,7 +90,6 @@ for pred_file, gt_file in zip(pred_files, gt_files):
     pred_path = os.path.join(pred_dir, pred_file)
     gt_path = os.path.join(gt_dir, gt_file)
 
-    # Beelden inladen
     pred_img = sitk.GetArrayFromImage(sitk.ReadImage(pred_path))
     gt_img = sitk.GetArrayFromImage(sitk.ReadImage(gt_path))
 
@@ -100,8 +100,9 @@ for pred_file, gt_file in zip(pred_files, gt_files):
     except Exception as e:
         print(f"Fout bij {pred_file} vs {gt_file}: {e}")
 
+```
 
-### 8) Dependencies
+### Dependencies
 
 This project was executed on the TU/e High Performance Computing (HPC) cluster.
 
@@ -114,6 +115,20 @@ This project was executed on the TU/e High Performance Computing (HPC) cluster.
 - SimpleITK
 - Pillow
 - Matplotlib
-- NumPy < 2.0
+- NumPy 
 - seg-metrics 
-- medpy 
+- medpy
+
+### Example SLURM job 
+```bash
+#!/bin/bash
+#SBATCH --job-name=BEP1_Train
+#SBATCH --partition=bme.gpu2.q
+#SBATCH -o logs/evaluation_%j.out
+#SBATCH -e logs/evaluation_%j.err
+#SBATCH --time=25:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem-per-cpu=16G
+#SBATCH --gpus=1
