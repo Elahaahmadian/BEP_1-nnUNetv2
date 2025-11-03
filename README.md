@@ -43,7 +43,7 @@ nnUNetv2_predict \
   -tr nnUNetTrainer \
   -c 2d \
   -p nnUNetPlans
-```
+
 
 ## 4) Postprocessing
 ```bash
@@ -53,7 +53,7 @@ nnUNetv2_apply_postprocessing \
   -pp_pkl_file /home/20203964/BEP_1/model_results/Dataset100_nonperfusion/nnUNetTrainer__nnUNetPlans__2d/crossval_results_folds_0_1_2_3_4/postprocessing.pkl \
   -plans_json /home/20203964/BEP_1/model_results/Dataset100_nonperfusion/nnUNetTrainer__nnUNetPlans__2d/crossval_results_folds_0_1_2_3_4/plans.json \
   -np 4
-```
+
 
 ## 5) Evaluation
 ```bash
