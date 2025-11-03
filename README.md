@@ -132,3 +132,37 @@ This project was executed on the TU/e High Performance Computing (HPC) cluster.
 #SBATCH --cpus-per-task=4
 #SBATCH --mem-per-cpu=16G
 #SBATCH --gpus=1
+
+
+## Additional Scripts
+
+### Convert NIfTI predictions to 2D slices
+This script converts 3D NIfTI files (e.g., `[1, H, W]` or `[D, H, W]`) into 2D NIfTI files for visualization or further processing
+
+
+```python
+import os
+import SimpleITK as sitk
+
+input_dir = "/path/to/imagesTr"  # or imagesTs, labelsTr, labelsTs
+output_dir = "/path/to/output_2D"
+os.makedirs(output_dir, exist_ok=True)
+
+for fname in os.listdir(input_dir):
+    if fname.endswith(".nii.gz"):
+        img = sitk.ReadImage(os.path.join(input_dir, fname))
+        arr = sitk.GetArrayFromImage(img)
+
+        # Take middle slice if 3D
+        if arr.ndim == 3 and arr.shape[0] > 1:
+            arr_2d = arr[arr.shape[0] // 2]
+        elif arr.ndim == 3 and arr.shape[0] == 1:
+            arr_2d = arr[0]
+        else:
+            arr_2d = arr
+
+        fixed_img = sitk.GetImageFromArray(arr_2d)
+        fixed_img.SetSpacing((1.0, 1.0))
+        sitk.WriteImage(fixed_img, os.path.join(output_dir, fname))
+```
+
