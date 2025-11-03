@@ -8,7 +8,7 @@ This project trains and evaluates nnU-Net v2 (2D) to segment non-perfused brain 
 ## Repository Structure
 - nnUNet_raw_data_base – Original dataset (imagesTr, imagesTs, labelsTr, labelsTs)
 - preprocessed_data
-- model_results/Dataset100_nonperfusion/nnUNetTrainer__nnUNetPlans__2d/ – Training outputs (folds 0–4)
+- model_results (folds 0–4)
 - ensemble_predictions_final
 - postprocessed_predictions_final
 - Evaluation
