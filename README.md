@@ -132,11 +132,11 @@ This project was executed on the TU/e High Performance Computing (HPC) cluster.
 #SBATCH --cpus-per-task=4
 #SBATCH --mem-per-cpu=16G
 #SBATCH --gpus=1
-
+```
 
 ## Additional Scripts
 
-### Convert NIfTI predictions to 2D slices
+Convert NIfTI predictions to 2D slices
 This script converts 3D NIfTI files (e.g., `[1, H, W]` or `[D, H, W]`) into 2D NIfTI files for visualization or further processing
 
 
