@@ -25,14 +25,13 @@ export nnUNet_results="/home/20203964/BEP_1/model_results"
 ```bash
 nnUNetv2_plan_and_preprocess -d 101 --verify_dataset_integrity -np 1
 
-## 2) Train (5 folds, 2D)
+## 2) Training
 ```bash
 nnUNetv2_train 100 2d 0
 nnUNetv2_train 100 2d 1
 nnUNetv2_train 100 2d 2
 nnUNetv2_train 100 2d 3
 nnUNetv2_train 100 2d 4
-```
 
 ## 3) Inference (test set)
 ```bash
@@ -101,5 +100,20 @@ for pred_file, gt_file in zip(pred_files, gt_files):
     except Exception as e:
         print(f"Fout bij {pred_file} vs {gt_file}: {e}")
 
-### 
 
+### 8) Dependencies
+
+This project was executed on the TU/e High Performance Computing (HPC) cluster.
+
+**Core environment:**
+- Python 3.10
+- CUDA 12.6
+- nnU-Net v2.2
+- PyTorch 2.3+
+- NiBabel
+- SimpleITK
+- Pillow
+- Matplotlib
+- NumPy < 2.0
+- seg-metrics 
+- medpy 
