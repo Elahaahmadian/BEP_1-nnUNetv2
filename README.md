@@ -1,6 +1,6 @@
 # BEP_1-nnUNetv2
 
-Segmentation of non-perfusion brain tissue on DSA images using nnU-Net v2 (2D)
+Segmentation of non-perfusion brain tissue on DSA images using nnU-Net v2 (2D).
 
 ## Overview
 This project trains and evaluates nnU-Net v2 (2D) to segment non-perfused brain regions on pre-EVT AP miniIP DSA images. It covers preprocessing, 5-fold cross-validation, ensembling, postprocessing, metrics (Dice, HD95) and qualitative visualizations.
@@ -11,6 +11,7 @@ This project trains and evaluates nnU-Net v2 (2D) to segment non-perfused brain 
 - model_results/Dataset100_nonperfusion/nnUNetTrainer__nnUNetPlans__2d/ – Training outputs (folds 0–4)
 - ensemble_predictions_final
 - postprocessed_predictions_final
+- Evaluation
 ## Environment (TU/e HPC)
 ```bash
 module load cuda12.6/toolkit
@@ -78,15 +79,13 @@ import os
 import SimpleITK as sitk
 from medpy.metric.binary import hd95
 
-# Paden naar predicties en ground truth
+
 pred_dir = "/home/20203964/BEP_1/labelspost_predicted_2D"
 gt_dir = "/home/20203964/BEP_1/labelsTs_2D"
 
-# Bestanden ophalen
 pred_files = sorted(os.listdir(pred_dir))
 gt_files = sorted(os.listdir(gt_dir))
 
-# HD95 berekenen voor elk paar
 for pred_file, gt_file in zip(pred_files, gt_files):
     pred_path = os.path.join(pred_dir, pred_file)
     gt_path = os.path.join(gt_dir, gt_file)
@@ -101,4 +100,6 @@ for pred_file, gt_file in zip(pred_files, gt_files):
         print(f"{pred_file} vs {gt_file}: HD95 = {hd:.2f} mm")
     except Exception as e:
         print(f"Fout bij {pred_file} vs {gt_file}: {e}")
+
+### 
 
