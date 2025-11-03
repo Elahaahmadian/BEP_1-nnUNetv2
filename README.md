@@ -25,7 +25,7 @@ export nnUNet_results="/home/20203964/BEP_1/model_results"
 ```bash
 nnUNetv2_plan_and_preprocess -d 101 --verify_dataset_integrity -np 1
 ```
-## 2) Training
+## 2) Training ( 5-fold crossvalidation)
 ```bash
 nnUNetv2_train 100 2d 0
 nnUNetv2_train 100 2d 1
