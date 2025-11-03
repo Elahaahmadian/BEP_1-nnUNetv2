@@ -24,7 +24,7 @@ export nnUNet_results="/home/20203964/BEP_1/model_results"
 ## 1) Preprocess
 ```bash
 nnUNetv2_plan_and_preprocess -d 101 --verify_dataset_integrity -np 1
-
+```
 ## 2) Training
 ```bash
 nnUNetv2_train 100 2d 0
@@ -32,7 +32,7 @@ nnUNetv2_train 100 2d 1
 nnUNetv2_train 100 2d 2
 nnUNetv2_train 100 2d 3
 nnUNetv2_train 100 2d 4
-
+```
 ## 3) Inference (test set)
 ```bash
 nnUNetv2_predict \
@@ -43,7 +43,7 @@ nnUNetv2_predict \
   -tr nnUNetTrainer \
   -c 2d \
   -p nnUNetPlans
-
+```
 
 ## 4) Postprocessing
 ```bash
@@ -53,7 +53,7 @@ nnUNetv2_apply_postprocessing \
   -pp_pkl_file /home/20203964/BEP_1/model_results/Dataset100_nonperfusion/nnUNetTrainer__nnUNetPlans__2d/crossval_results_folds_0_1_2_3_4/postprocessing.pkl \
   -plans_json /home/20203964/BEP_1/model_results/Dataset100_nonperfusion/nnUNetTrainer__nnUNetPlans__2d/crossval_results_folds_0_1_2_3_4/plans.json \
   -np 4
-
+```
 
 ## 5) Evaluation
 ```bash
@@ -72,7 +72,7 @@ nnUNetv2_evaluate_folder \
   -np 1 \
   -o "$MET_JSON" \
   2>&1 | tee "$MET_TXT"
-
+```
 ### HD95
 import os
 import SimpleITK as sitk
